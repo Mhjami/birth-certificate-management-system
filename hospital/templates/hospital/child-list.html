@@ -1,0 +1,74 @@
+{% extends "base.html" %}{% load static %}{% load bootstrap4 %}
+
+{% block head %}
+<title> Dashboard </title>
+{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Birth Certificate Management</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle
+        navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <div class="container">
+        <div style="clear: both;">
+            <br>
+            <a href="{% url 'website:add_child' %}" class="btn-link pull-right">Add
+                New</a>
+            <br><br>
+            <form class="form" method="get">
+                <input type="search" class="form form-control"
+                    placeholder="Search" name="search"
+                    value="{{ search }}" />
+            </form>
+            <br><br>
+        </div>
+        <br>
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First</th>
+                        <th scope="col">Last</th>
+                        <th scope="col">Date of birth</th>
+                        <th scope="col">Blood Type</th>
+                        <th scope="col">Fathers name</th>
+                        <th scope="col">Mothers name</th>
+                        <th scope="col">City</th>
+                        <th scope="col">View</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for child in childs %}
+                    <tr>
+                        <th scope="row">{{ child.id }}</th>
+                        <td>{{ child.first_name }}</td>
+                        <td>{{ child.last_name }}</td>
+                        <td>{{ child.date_of_birth }}</td>
+                        <td>{{ child.blood_group }}</td>
+                        <td>{{ child.fathers_name }}</td>
+                        <td>{{ child.mothers_name }}</td>
+                        <td>{{ child.date_of_birth }}</td>
+                        <th scope="col"><a href="{% url 'website:view_child' child.id %}">View</a>/<a
+                                href="{% url 'website:edit_child' child.id %}">Edit</a></th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+{% endblock %}
