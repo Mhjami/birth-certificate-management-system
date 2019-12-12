@@ -13,7 +13,7 @@ SECRET_KEY = '*50pu-6tzp=t6)qkoz29(kag!jn01rlb!2w%j=p*)w51oe=jb*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 LOGIN_REDIRECT_URL = '/child/'
 
